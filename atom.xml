@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2014-09-01T02:57:52.606Z</updated>
+  <updated>2014-09-17T09:56:38.049Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,52 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[When Smart Pointers Meet Forward Declaration]]></title>
+    <link href="http://yoursite.com/2014/09/17/When-Smart-Pointers-Meet-Forward-Declaration/"/>
+    <id>http://yoursite.com/2014/09/17/When-Smart-Pointers-Meet-Forward-Declaration/</id>
+    <published>2014-09-17T08:47:20.000Z</published>
+    <updated>2014-09-17T09:55:34.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="What_is_Forward_Declaration">What is Forward Declaration</h3>
+<p>Forward Declaration is a technic in C++ which allows you to use the type name without including the header file. It saves time when compiling the code. Usually it’s used when we declare a pointer to the type in class declaration if we don’t want to access its members (at that moment).</p>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Bar;  <span class="comment">// forward declaration of class Bar</span></div><div class="line"></div><div class="line"><span class="keyword">class</span> Foo</div><div class="line">{</div><div class="line">    <span class="comment">// Something you don't care</span></div><div class="line">	</div><div class="line">    Bar *bar;  <span class="comment">// Pointer to Bar</span></div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>Alternatively you can use in-place declaration.</p>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Foo</div><div class="line">{</div><div class="line">    <span class="comment">// Something you don't care</span></div><div class="line">	</div><div class="line">    <span class="keyword">class</span> Bar *bar;  <span class="comment">// Pointer to Bar</span></div><div class="line">};</div></pre></td></tr></table></figure>
+
+<h3 id="Smart_Pointers">Smart Pointers</h3>
+<p>C++11 has been widely used nowadays, and one of the exciting features is smart pointers (std::shared_ptr, std::unique_ptr, std::weak_ptr). We merely use raw pointers now, because by using the smart pointers we no longer care about when should we release the objects. So the above class Foo can be envolved.</p>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Bar;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Foo</div><div class="line">{</div><div class="line">    std::unique_ptr&lt;Bar&gt; bar;</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<h3 id="The_Problem">The Problem</h3>
+<p>Nice! We used forward declaration to avoid including the header file, and smart pointer to take care of the memory. Let’s compile the code.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ERROR: <span class="keyword">use</span> <span class="keyword">of</span> incomplete <span class="class"><span class="keyword">type</span> '<span class="title">Bar</span>'.</span></div></pre></td></tr></table></figure>
+
+<p>Wait! What happened? What the hell is incomplete type?</p>
+<h3 id="Analysis">Analysis</h3>
+<p>In the code above, we forward declared class Bar. Remember the point of forward declaration? We can’t access its members. So when did we potentially used the members of class Bar? Yes, the std::unique_ptr.</p>
+<p>The std::unique_ptr takes care of the resource. When the smart pointer goes out of scope, it destroies the instance of class Bar, it calls Bar::~Bar() for us!</p>
+<p>Okey, let’s check when the smart pointer goes out of scope. Right! The smart pointer dies when the instance of class Foo dies!</p>
+<p>So what is the root of this problem? Can’t we use smart pointers with forward declaration? No! Of course we can combine the power of smart pointer and forward declaration. If you have a good compiler (like Clang bundled with Xcode), you can check the massive error output when compiling the code, and you can find something like this:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">default_delete can not <span class="built_in">delete</span> incomplete <span class="built_in">type</span></div></pre></td></tr></table></figure>
+
+<p>default_delete. Hmmm… the default destructor?! Yes! C++ compiler generates default destructor for every class if we don’t provide one, and of course it’s not been done by pasting the code after our .cpp file :). Does the destructor know the complete declaration of class Bar? Not in our case.</p>
+<h3 id="Solve_the_Problem">Solve the Problem</h3>
+<p>Now it’s clear, the default destructor caused the tricky problem. All we need to do is to let the destructor know the declaration of class Bar. How? Well, you can simply include the Bar.h, but we lose the forward declaration. Since eventually we’ll include the header file in Foo.cpp, I’d prefer to implement destructor myself.</p>
+<p>Foo.h</p>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Bar;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Foo</div><div class="line">{</div><div class="line">    ~Foo();</div><div class="line">    std::unique_ptr&lt;Bar&gt; bar;</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>Foo.cpp</p>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> "Bar.h"  <span class="comment">// of course we'll use this in Foo.cpp!</span></span></div><div class="line"></div><div class="line">Foo::~Foo()</div><div class="line">{</div><div class="line">    <span class="comment">// Nothing to do</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>Now let’s compile the code. Woohoo!</p>
+]]></content>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C++/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[New To TDD]]></title>
