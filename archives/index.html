@@ -62,6 +62,121 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Stop-Copy-and-Paste-in-your-code" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/10/07/Stop-Copy-and-Paste-in-your-code/" class="article-date">
+  <time datetime="2014-10-07T06:42:54.000Z" itemprop="datePublished">Oct 7 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/10/07/Stop-Copy-and-Paste-in-your-code/">Stop Copy and Paste in your code</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>A program analyzer recently studied numbers of errors caused by the copy and paste method and made a conclusion that programmers most often tend to make mistakes in the last fragment of a homogeneous code block. He calls it Last Line Effect.</p>
+<p>Sometimes the programers have to write a series of similar constructs. The programmers often deal this by copying a code fragment and paste it serval times for further editing, and this give birth to errors - it risks easily forgetting to change something in the pasted lines.</p>
+<p>Here is a pattern discovered by the analyzer:</p>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">inline</span> Vector3int32& <span class="keyword">operator</span>+=(<span class="keyword">const</span> Vector3int32& other) {</div><div class="line">    x += other.x;</div><div class="line">    y += other.y;</div><div class="line">    z += other.y;</div><div class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>Note the line ‘z += other.y;’. The programmer forgot to replace ‘y’ with ‘z’.</p>
+<p>The analyzer also listed a few errors in famous production code.</p>
+<h4 id="Source_Engine_SDK">Source Engine SDK</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">inline</span> <span class="keyword">void</span> Init( <span class="keyword">float</span> ix=<span class="number">0</span>, <span class="keyword">float</span> iy=<span class="number">0</span>, <span class="keyword">float</span> iz=<span class="number">0</span>, <span class="keyword">float</span> iw = <span class="number">0</span> ) </div><div class="line">{</div><div class="line">    SetX( ix );</div><div class="line">    SetY( iy );</div><div class="line">    SetZ( iz );</div><div class="line">    SetZ( iw );</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>The SetW() function should be called at the end.</p>
+<h4 id="Chromium">Chromium</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (access & FILE_WRITE_ATTRIBUTES)</div><div class="line">    output.append(ASCIIToUTF16(<span class="string">"\tFILE_WRITE_ATTRIBUTES\n"</span>));</div><div class="line"><span class="keyword">if</span> (access & FILE_WRITE_DATA)</div><div class="line">    output.append(ASCIIToUTF16(<span class="string">"\tFILE_WRITE_DATA\n"</span>));</div><div class="line"><span class="keyword">if</span> (access & FILE_WRITE_EA)</div><div class="line">    output.append(ASCIIToUTF16(<span class="string">"\tFILE_WRITE_EA\n"</span>));</div><div class="line"><span class="keyword">if</span> (access & FILE_WRITE_EA)</div><div class="line">    output.append(ASCIIToUTF16(<span class="string">"\tFILE_WRITE_EA\n"</span>));</div><div class="line"><span class="keyword">break</span>;</div></pre></td></tr></table></figure>
+
+<p>The last block and the one before it are identical.</p>
+<h4 id="ReactOS">ReactOS</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (*ScanString == L<span class="string">'\"'</span> ||</div><div class="line">    *ScanString == L<span class="string">'^'</span> ||</div><div class="line">    *ScanString == L<span class="string">'\"'</span>)</div></pre></td></tr></table></figure>
+
+<h4 id="Multi_Theft_Auto">Multi Theft Auto</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> CWaterPolySAInterface</div><div class="line">{</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    WORD m_wVertexIDs[<span class="number">3</span>];</div><div class="line">};</div><div class="line"></div><div class="line">CWaterPoly* CWaterManagerSA::CreateQuad (....)</div><div class="line">{</div><div class="line">    ....</div><div class="line">    pInterface-&gt;m_wVertexIDs [ <span class="number">0</span> ] = pV1-&gt;GetID ();</div><div class="line">    pInterface-&gt;m_wVertexIDs [ <span class="number">1</span> ] = pV2-&gt;GetID ();</div><div class="line">    pInterface-&gt;m_wVertexIDs [ <span class="number">2</span> ] = pV3-&gt;GetID ();</div><div class="line">    pInterface-&gt;m_wVertexIDs [ <span class="number">3</span> ] = pV4-&gt;GetID ();</div><div class="line">    ....</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>The last line was pasted mechanically and is redundant. There are only 3 items in the array.</p>
+<h4 id="Source_Engine_SDK-1">Source Engine SDK</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">intens.x=OrSIMD(AndSIMD(BackgroundColor.x,no_hit_mask),</div><div class="line">AndNotSIMD(no_hit_mask,intens.x));</div><div class="line">intens.y=OrSIMD(AndSIMD(BackgroundColor.y,no_hit_mask),</div><div class="line">AndNotSIMD(no_hit_mask,intens.y));</div><div class="line">intens.z=OrSIMD(AndSIMD(BackgroundColor.y,no_hit_mask),</div><div class="line">AndNotSIMD(no_hit_mask,intens.z));</div></pre></td></tr></table></figure>
+
+<p>The programmer forgot to replace “BackgroundColor.y” with “BackgroundColor.z” in the last block.</p>
+<h4 id="Trans-Proteomic_Pipeline">Trans-Proteomic Pipeline</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> setPepMaxProb(....)</div><div class="line">{  </div><div class="line">    ....</div><div class="line">    <span class="keyword">double</span> max4 = <span class="number">0.0</span>;</div><div class="line">    <span class="keyword">double</span> max5 = <span class="number">0.0</span>;</div><div class="line">    <span class="keyword">double</span> max6 = <span class="number">0.0</span>;</div><div class="line">    <span class="keyword">double</span> max7 = <span class="number">0.0</span>;</div><div class="line">    ....</div><div class="line">    <span class="keyword">if</span> ( pep3 ) { ... <span class="keyword">if</span> ( use_joint_probs && prob &gt; max3 ) ... }</div><div class="line">    ....</div><div class="line">    <span class="keyword">if</span> ( pep4 ) { ... <span class="keyword">if</span> ( use_joint_probs && prob &gt; max4 ) ... }</div><div class="line">    ....</div><div class="line">    <span class="keyword">if</span> ( pep5 ) { ... <span class="keyword">if</span> ( use_joint_probs && prob &gt; max5 ) ... }</div><div class="line">    ....</div><div class="line">    <span class="keyword">if</span> ( pep6 ) { ... <span class="keyword">if</span> ( use_joint_probs && prob &gt; max6 ) ... }</div><div class="line">    ....</div><div class="line">    <span class="keyword">if</span> ( pep7 ) { ... <span class="keyword">if</span> ( use_joint_probs && prob &gt; max6 ) ... }</div><div class="line">    ....</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>The programmer forgot to replace “prob &gt; max6” with “prob &gt; max7” in the last condition.</p>
+<h4 id="SeqAn">SeqAn</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">inline</span> <span class="keyword">typename</span> Value&lt;Pipe&gt;::Type <span class="keyword">const</span> & <span class="keyword">operator</span>*() {</div><div class="line">    tmp.i1 = *in.in1;</div><div class="line">    tmp.i2 = *in.in2;</div><div class="line">    tmp.i3 = *in.in2;</div><div class="line">    <span class="keyword">return</span> tmp;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h4 id="SlimDX">SlimDX</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++ )</div><div class="line">{</div><div class="line">    sliders[i] = joystate.rglSlider[i];</div><div class="line">    asliders[i] = joystate.rglASlider[i];</div><div class="line">    vsliders[i] = joystate.rglVSlider[i];</div><div class="line">    fsliders[i] = joystate.rglVSlider[i];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>The rglFSlider array should have been used in the last line.</p>
+<h4 id="Qt">Qt</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (repetition == QStringLiteral(<span class="string">"repeat"</span>) ||</div><div class="line">    repetition.isEmpty()) {</div><div class="line">    pattern-&gt;patternRepeatX = <span class="keyword">true</span>;</div><div class="line">    pattern-&gt;patternRepeatY = <span class="keyword">true</span>;</div><div class="line">} <span class="keyword">else</span> <span class="keyword">if</span> (repetition == QStringLiteral(<span class="string">"repeat-x"</span>)) {</div><div class="line">    pattern-&gt;patternRepeatX = <span class="keyword">true</span>;</div><div class="line">} <span class="keyword">else</span> <span class="keyword">if</span> (repetition == QStringLiteral(<span class="string">"repeat-y"</span>)) {</div><div class="line">    pattern-&gt;patternRepeatY = <span class="keyword">true</span>;</div><div class="line">} <span class="keyword">else</span> <span class="keyword">if</span> (repetition == QStringLiteral(<span class="string">"no-repeat"</span>)) {</div><div class="line">    pattern-&gt;patternRepeatY = <span class="keyword">false</span>;</div><div class="line">    pattern-&gt;patternRepeatY = <span class="keyword">false</span>;</div><div class="line">} <span class="keyword">else</span> {</div><div class="line">    <span class="comment">//TODO: exception: SYNTAX_ERR</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>‘patternRepeatX’ is missing in the very last block. The correct code looks as follows:</p>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pattern-&gt;patternRepeatX = <span class="keyword">false</span>;</div><div class="line">pattern-&gt;patternRepeatY = <span class="keyword">false</span>;</div></pre></td></tr></table></figure>
+
+<h4 id="ReactOS-1">ReactOS</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> istride = <span class="keyword">sizeof</span>(tmp[<span class="number">0</span>]) / <span class="keyword">sizeof</span>(tmp[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>]);</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> jstride = <span class="keyword">sizeof</span>(tmp[<span class="number">0</span>][<span class="number">0</span>]) / <span class="keyword">sizeof</span>(tmp[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>]);</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> mistride = <span class="keyword">sizeof</span>(mag[<span class="number">0</span>]) / <span class="keyword">sizeof</span>(mag[<span class="number">0</span>][<span class="number">0</span>]);</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> mjstride = <span class="keyword">sizeof</span>(mag[<span class="number">0</span>][<span class="number">0</span>]) / <span class="keyword">sizeof</span>(mag[<span class="number">0</span>][<span class="number">0</span>]);</div></pre></td></tr></table></figure>
+
+<p>The ‘mjstride’ variable will always be equal to one. The last line should have been written like this:</p>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> mjstride = <span class="keyword">sizeof</span>(mag[<span class="number">0</span>][<span class="number">0</span>]) / <span class="keyword">sizeof</span>(mag[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>]);</div></pre></td></tr></table></figure>
+
+<h4 id="Mozilla_Firefox">Mozilla Firefox</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (protocol.EqualsIgnoreCase(<span class="string">"http"</span>) ||</div><div class="line">    protocol.EqualsIgnoreCase(<span class="string">"https"</span>) ||</div><div class="line">    protocol.EqualsIgnoreCase(<span class="string">"news"</span>) ||</div><div class="line">    protocol.EqualsIgnoreCase(<span class="string">"ftp"</span>) ||          &lt;&lt;&lt;---</div><div class="line">    protocol.EqualsIgnoreCase(<span class="string">"file"</span>) ||</div><div class="line">    protocol.EqualsIgnoreCase(<span class="string">"javascript"</span>) ||</div><div class="line">    protocol.EqualsIgnoreCase(<span class="string">"ftp"</span>)) {          &lt;&lt;&lt;---</div></pre></td></tr></table></figure>
+
+<p>A suspicious string “ftp” at the end - it has already been compared to.</p>
+<h4 id="Quake-III-Arena">Quake-III-Arena</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">fabs</span>(dir[<span class="number">0</span>]) &gt; test-&gt;radius ||</div><div class="line">    <span class="built_in">fabs</span>(dir[<span class="number">1</span>]) &gt; test-&gt;radius ||</div><div class="line">    <span class="built_in">fabs</span>(dir[<span class="number">1</span>]) &gt; test-&gt;radius)</div></pre></td></tr></table></figure>
+
+<p>The value from the dir[2] cell is left unchecked.</p>
+<h4 id="Clang">Clang</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span> (ContainerBegLine &lt;= ContaineeBegLine &&</div><div class="line">        ContainerEndLine &gt;= ContaineeEndLine &&</div><div class="line">        (ContainerBegLine != ContaineeBegLine ||</div><div class="line">         SM.getExpansionColumnNumber(ContainerRBeg) &lt;=</div><div class="line">         SM.getExpansionColumnNumber(ContaineeRBeg)) &&</div><div class="line">        (ContainerEndLine != ContaineeEndLine ||</div><div class="line">         SM.getExpansionColumnNumber(ContainerREnd) &gt;=</div><div class="line">         SM.getExpansionColumnNumber(ContainerREnd)));</div></pre></td></tr></table></figure>
+
+<p>At the very end of the block, the “SM.getExpansionColumnNumber(ContainerREnd)” expression is compared to itself.</p>
+<h4 id="MongoDB">MongoDB</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> <span class="keyword">operator</span>==(<span class="keyword">const</span> MemberCfg& r) <span class="keyword">const</span> {</div><div class="line">    ....</div><div class="line">    <span class="keyword">return</span> _id==r._id && votes == r.votes &&</div><div class="line">           h == r.h && priority == r.priority &&</div><div class="line">           arbiterOnly == r.arbiterOnly &&</div><div class="line">           slaveDelay == r.slaveDelay &&</div><div class="line">           hidden == r.hidden &&</div><div class="line">           buildIndexes == buildIndexes;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>The programmer forgot about “r.” in the last line.</p>
+<h4 id="Unreal_Engine_4">Unreal Engine 4</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">bool</span> PositionIsInside(....)</div><div class="line">{</div><div class="line">    <span class="keyword">return</span></div><div class="line">        Position.X &gt;= Control.Center.X - BoxSize.X * <span class="number">0.5f</span> &&</div><div class="line">        Position.X &lt;= Control.Center.X + BoxSize.X * <span class="number">0.5f</span> &&</div><div class="line">        Position.Y &gt;= Control.Center.Y - BoxSize.Y * <span class="number">0.5f</span> &&</div><div class="line">        Position.Y &gt;= Control.Center.Y - BoxSize.Y * <span class="number">0.5f</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>The programmer forgot to make 2 edits in the last line. Firstly, “&gt;=” should be replaced with “&lt;=; secondly, minus should be replaced with plus.</p>
+<h4 id="Qt-1">Qt</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">qreal x = ctx-&gt;callData-&gt;args[<span class="number">0</span>].toNumber();</div><div class="line">qreal y = ctx-&gt;callData-&gt;args[<span class="number">1</span>].toNumber();</div><div class="line">qreal w = ctx-&gt;callData-&gt;args[<span class="number">2</span>].toNumber();</div><div class="line">qreal h = ctx-&gt;callData-&gt;args[<span class="number">3</span>].toNumber();</div><div class="line"><span class="keyword">if</span> (!qIsFinite(x) || !qIsFinite(y) ||</div><div class="line">    !qIsFinite(w) || !qIsFinite(w))</div></pre></td></tr></table></figure>
+
+<p>In the very last call of the function qIsFinite, the ‘h’ variable should have been used as an argument.</p>
+<h4 id="OpenSSL">OpenSSL</h4>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!<span class="built_in">strncmp</span>(vstart, <span class="string">"ASCII"</span>, <span class="number">5</span>))</div><div class="line">    arg-&gt;format = ASN1_GEN_FORMAT_ASCII;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> (!<span class="built_in">strncmp</span>(vstart, <span class="string">"UTF8"</span>, <span class="number">4</span>))</div><div class="line">    arg-&gt;format = ASN1_GEN_FORMAT_UTF8;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> (!<span class="built_in">strncmp</span>(vstart, <span class="string">"HEX"</span>, <span class="number">3</span>))</div><div class="line">    arg-&gt;format = ASN1_GEN_FORMAT_HEX;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> (!<span class="built_in">strncmp</span>(vstart, <span class="string">"BITLIST"</span>, <span class="number">3</span>))</div><div class="line">    arg-&gt;format = ASN1_GEN_FORMAT_BITLIST;</div></pre></td></tr></table></figure>
+
+<p>The length of the “BITLIST” string is 7, not 3 characters.</p>
+<p>As you can see even highly-skilled developers of such projects as Clang or Qt tend to make mistakes of this kind. So please stop copy and paste in your code.</p>
+<p>Original Post: <a href="http://www.cplusplus.com/articles/Lz86b7Xj/" target="_blank" rel="external">http://www.cplusplus.com/articles/Lz86b7Xj/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/10/07/Stop-Copy-and-Paste-in-your-code/" data-id="wz4vtck8be74uq3m" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-When-Smart-Pointers-Meet-Forward-Declaration" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/09/17/When-Smart-Pointers-Meet-Forward-Declaration/" class="article-date">
@@ -268,7 +383,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -278,6 +393,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2014/10/07/Stop-Copy-and-Paste-in-your-code/">Stop Copy and Paste in your code</a>
+          </li>
         
           <li>
             <a href="/2014/09/17/When-Smart-Pointers-Meet-Forward-Declaration/">When Smart Pointers Meet Forward Declaration</a>

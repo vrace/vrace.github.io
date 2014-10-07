@@ -1,26 +1,88 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[WANE's LAIR]]></title>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
   
-  <link href="/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2014-10-07T07:09:17.212Z</updated>
-  <id>http://yoursite.com/</id>
+  <title>Stop Copy and Paste in your code | WANE&#39;s LAIR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="A program analyzer recently studied numbers of errors caused by the copy and paste method and made a conclusion that programmers most often tend to make mistakes in the last fragment of a homogeneous">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stop Copy and Paste in your code">
+<meta property="og:url" content="http://yoursite.com/2014/10/07/Stop-Copy-and-Paste-in-your-code/">
+<meta property="og:site_name" content="WANE's LAIR">
+<meta property="og:description" content="A program analyzer recently studied numbers of errors caused by the copy and paste method and made a conclusion that programmers most often tend to make mistakes in the last fragment of a homogeneous">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Stop Copy and Paste in your code">
+<meta name="twitter:description" content="A program analyzer recently studied numbers of errors caused by the copy and paste method and made a conclusion that programmers most often tend to make mistakes in the last fragment of a homogeneous">
+
   
-  <author>
-    <name><![CDATA[wane!]]></name>
+    <link rel="alternative" href="/atom.xml" title="WANE&#39;s LAIR" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">WANE&#39;s LAIR</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Stop-Copy-and-Paste-in-your-code" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/10/07/Stop-Copy-and-Paste-in-your-code/" class="article-date">
+  <time datetime="2014-10-07T06:42:54.000Z" itemprop="datePublished">Oct 7 2014</time>
+</a>
     
-  </author>
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-  <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+    <h1 class="article-title" itemprop="name">
+      Stop Copy and Paste in your code
+    </h1>
   
-  <entry>
-    <title><![CDATA[Stop Copy and Paste in your code]]></title>
-    <link href="http://yoursite.com/2014/10/07/Stop-Copy-and-Paste-in-your-code/"/>
-    <id>http://yoursite.com/2014/10/07/Stop-Copy-and-Paste-in-your-code/</id>
-    <published>2014-10-07T06:42:54.000Z</published>
-    <updated>2014-10-07T07:06:06.000Z</updated>
-    <content type="html"><![CDATA[<p>A program analyzer recently studied numbers of errors caused by the copy and paste method and made a conclusion that programmers most often tend to make mistakes in the last fragment of a homogeneous code block. He calls it Last Line Effect.</p>
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>A program analyzer recently studied numbers of errors caused by the copy and paste method and made a conclusion that programmers most often tend to make mistakes in the last fragment of a homogeneous code block. He calls it Last Line Effect.</p>
 <p>Sometimes the programers have to write a series of similar constructs. The programmers often deal this by copying a code fragment and paste it serval times for further editing, and this give birth to errors - it risks easily forgetting to change something in the pasted lines.</p>
 <p>Here is a pattern discovered by the analyzer:</p>
 <figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">inline</span> Vector3int32& <span class="keyword">operator</span>+=(<span class="keyword">const</span> Vector3int32& other) {</div><div class="line">    x += other.x;</div><div class="line">    y += other.y;</div><div class="line">    z += other.y;</div><div class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
@@ -99,111 +161,123 @@
 <p>The length of the “BITLIST” string is 7, not 3 characters.</p>
 <p>As you can see even highly-skilled developers of such projects as Clang or Qt tend to make mistakes of this kind. So please stop copy and paste in your code.</p>
 <p>Original Post: <a href="http://www.cplusplus.com/articles/Lz86b7Xj/" target="_blank" rel="external">http://www.cplusplus.com/articles/Lz86b7Xj/</a></p>
-]]></content>
-    
-    
-  </entry>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/10/07/Stop-Copy-and-Paste-in-your-code/" data-id="wz4vtck8be74uq3m" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
   
-  <entry>
-    <title><![CDATA[When Smart Pointers Meet Forward Declaration]]></title>
-    <link href="http://yoursite.com/2014/09/17/When-Smart-Pointers-Meet-Forward-Declaration/"/>
-    <id>http://yoursite.com/2014/09/17/When-Smart-Pointers-Meet-Forward-Declaration/</id>
-    <published>2014-09-17T08:47:20.000Z</published>
-    <updated>2014-09-17T09:55:34.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="What_is_Forward_Declaration">What is Forward Declaration</h3>
-<p>Forward Declaration is a technic in C++ which allows you to use the type name without including the header file. It saves time when compiling the code. Usually it’s used when we declare a pointer to the type in class declaration if we don’t want to access its members (at that moment).</p>
-<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Bar;  <span class="comment">// forward declaration of class Bar</span></div><div class="line"></div><div class="line"><span class="keyword">class</span> Foo</div><div class="line">{</div><div class="line">    <span class="comment">// Something you don't care</span></div><div class="line">	</div><div class="line">    Bar *bar;  <span class="comment">// Pointer to Bar</span></div><div class="line">};</div></pre></td></tr></table></figure>
-
-<p>Alternatively you can use in-place declaration.</p>
-<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Foo</div><div class="line">{</div><div class="line">    <span class="comment">// Something you don't care</span></div><div class="line">	</div><div class="line">    <span class="keyword">class</span> Bar *bar;  <span class="comment">// Pointer to Bar</span></div><div class="line">};</div></pre></td></tr></table></figure>
-
-<h3 id="Smart_Pointers">Smart Pointers</h3>
-<p>C++11 has been widely used nowadays, and one of the exciting features is smart pointers (std::shared_ptr, std::unique_ptr, std::weak_ptr). We merely use raw pointers now, because by using the smart pointers we no longer care about when should we release the objects. So the above class Foo can be envolved.</p>
-<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Bar;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Foo</div><div class="line">{</div><div class="line">    std::unique_ptr&lt;Bar&gt; bar;</div><div class="line">};</div></pre></td></tr></table></figure>
-
-<h3 id="The_Problem">The Problem</h3>
-<p>Nice! We used forward declaration to avoid including the header file, and smart pointer to take care of the memory. Let’s compile the code.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ERROR: <span class="keyword">use</span> <span class="keyword">of</span> incomplete <span class="class"><span class="keyword">type</span> '<span class="title">Bar</span>'.</span></div></pre></td></tr></table></figure>
-
-<p>Wait! What happened? What the hell is incomplete type?</p>
-<h3 id="Analysis">Analysis</h3>
-<p>In the code above, we forward declared class Bar. Remember the point of forward declaration? We can’t access its members. So when did we potentially used the members of class Bar? Yes, the std::unique_ptr.</p>
-<p>The std::unique_ptr takes care of the resource. When the smart pointer goes out of scope, it destroies the instance of class Bar, it calls Bar::~Bar() for us!</p>
-<p>Okey, let’s check when the smart pointer goes out of scope. Right! The smart pointer dies when the instance of class Foo dies!</p>
-<p>So what is the root of this problem? Can’t we use smart pointers with forward declaration? No! Of course we can combine the power of smart pointer and forward declaration. If you have a good compiler (like Clang bundled with Xcode), you can check the massive error output when compiling the code, and you can find something like this:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">default_delete can not <span class="built_in">delete</span> incomplete <span class="built_in">type</span></div></pre></td></tr></table></figure>
-
-<p>default_delete. Hmmm… the default destructor?! Yes! C++ compiler generates default destructor for every class if we don’t provide one, and of course it’s not been done by pasting the code after our .cpp file :). Does the destructor know the complete declaration of class Bar? Not in our case.</p>
-<h3 id="Solve_the_Problem">Solve the Problem</h3>
-<p>Now it’s clear, the default destructor caused the tricky problem. All we need to do is to let the destructor know the declaration of class Bar. How? Well, you can simply include the Bar.h, but we lose the forward declaration. Since eventually we’ll include the header file in Foo.cpp, I’d prefer to implement destructor myself.</p>
-<p>Foo.h</p>
-<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Bar;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Foo</div><div class="line">{</div><div class="line">    ~Foo();</div><div class="line">    std::unique_ptr&lt;Bar&gt; bar;</div><div class="line">};</div></pre></td></tr></table></figure>
-
-<p>Foo.cpp</p>
-<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> "Bar.h"  <span class="comment">// of course we'll use this in Foo.cpp!</span></span></div><div class="line"></div><div class="line">Foo::~Foo()</div><div class="line">{</div><div class="line">    <span class="comment">// Nothing to do</span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>Now let’s compile the code. Woohoo!</p>
-]]></content>
     
-    
-      <category term="C++" scheme="http://yoursite.com/tags/C++/"/>
-    
-  </entry>
+<nav id="article-nav">
   
-  <entry>
-    <title><![CDATA[New To TDD]]></title>
-    <link href="http://yoursite.com/2014/08/31/New-To-TDD/"/>
-    <id>http://yoursite.com/2014/08/31/New-To-TDD/</id>
-    <published>2014-08-31T09:50:20.000Z</published>
-    <updated>2014-08-31T10:48:46.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="What_is_TDD">What is TDD</h2>
-<p>TDD - Test Driven Development, is a methodology to help building better software. The general idea of TDD is to build software in the RED-&gt;GREEN-&gt;YELLOW cycle.</p>
-<h3 id="RED">RED</h3>
-<p>In TDD, the test code is written first. Since we havn’t write any business code at this moment, the test cases shall fail - either the code won’t compile or current code can’t meet the test cases’ demand.</p>
-<h3 id="GREEN">GREEN</h3>
-<p>In this stage, we develop the business code to pass the test cases. We don’t have to gold-plate the code at this stage; we just need the code to pass the tests.</p>
-<h3 id="YELLOW">YELLOW</h3>
-<p>And now before we jump into new functions, we must refactor the code. Refactoring the code makes the code more clear, and easier for futher development. In this stage, we modify the code and run test cases at the same time to ensure we didn’t break any function.</p>
-<h2 id="Why_TDD">Why TDD</h2>
-<p>People make mistakes. That’s why we need TDD here, to set a bar to verify whether the code works. If we craft test cases clearly enough, when can ensure that we have completed the software’s requirement if the code is in GREEN stage.</p>
-<p>Also, we need a way to ensure that we won’t break existing functions by modifing existing code or adding new code.</p>
-<h2 id="TDD_is_not_Almighty">TDD is not Almighty</h2>
-<p>TDD is good, but it’s not almighty. There’re things TDD can’t cover, and there’re things TDD breaks. For an example, you can’t really test if a RANDOM functio really generates random numbers. Also, when using TDD, you sometimes have to break the code to make it easier to test.</p>
-<p>Any way, when people are not so clear about the requirements, TDD is a good way to help evolving the code. So before a new mighty methodology is developed, why not stick to it?</p>
-]]></content>
-    
-    
-      <category term="TDD" scheme="http://yoursite.com/tags/TDD/"/>
-    
-  </entry>
   
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://yoursite.com/2014/08/28/hello-world/"/>
-    <id>http://yoursite.com/2014/08/28/hello-world/</id>
-    <published>2014-08-28T03:10:17.000Z</published>
-    <updated>2014-08-28T03:10:17.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">trobuleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2>
-<h3 id="Create_a_new_post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    
-  </entry>
+    <a href="/2014/09/17/When-Smart-Pointers-Meet-Forward-Declaration/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">When Smart Pointers Meet Forward Declaration</div>
+    </a>
   
-</feed>
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C++/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TDD/">TDD</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C++/" style="font-size: 20.00px;">C++</a><a href="/tags/C++-Smart-Pointer/" style="font-size: 10.00px;">C++ Smart Pointer</a><a href="/tags/C++,-Smart-Pointer/" style="font-size: 10.00px;">C++, Smart Pointer</a><a href="/tags/C++;-Smart-Pointer/" style="font-size: 10.00px;">C++; Smart Pointer</a><a href="/tags/C++Smart-Pointer/" style="font-size: 10.00px;">C++|Smart Pointer</a><a href="/tags/TDD/" style="font-size: 20.00px;">TDD</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09">September 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08">August 2014</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/10/07/Stop-Copy-and-Paste-in-your-code/">Stop Copy and Paste in your code</a>
+          </li>
+        
+          <li>
+            <a href="/2014/09/17/When-Smart-Pointers-Meet-Forward-Declaration/">When Smart Pointers Meet Forward Declaration</a>
+          </li>
+        
+          <li>
+            <a href="/2014/08/31/New-To-TDD/">New To TDD</a>
+          </li>
+        
+          <li>
+            <a href="/2014/08/28/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 wane!<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
