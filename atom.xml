@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2014-10-07T07:09:17.212Z</updated>
+  <updated>2014-10-29T06:58:17.474Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,28 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Be careful of ()]]></title>
+    <link href="http://yoursite.com/2014/10/29/Be-careful-of-()/"/>
+    <id>http://yoursite.com/2014/10/29/Be-careful-of-()/</id>
+    <published>2014-10-29T06:49:09.000Z</published>
+    <updated>2014-10-29T06:56:48.000Z</updated>
+    <content type="html"><![CDATA[<p>It’s boring in the afternoon, and I wantted to have some fun with my friends. I sent them a short program, and ask for output.</p>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">class</span> A</div><div class="line">{</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    A()</div><div class="line">    {</div><div class="line">        std::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello"</span> &lt;&lt; std::endl;</div><div class="line">    }</div><div class="line">};</div><div class="line"></div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line">    A a();</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>Not surprising, all of them answered “Hello”.</p>
+<p>It seems pretty straight forward, it’s justing creating an instance of A and calling its constructor, right?</p>
+<h4 id="NO!">NO!</h4>
+<p>Did you remember how you define a function within a function? That’s right. The code</p>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A a();</div></pre></td></tr></table></figure>
+
+<p>here declares a function, it’s not creating an instance of A.</p>
+<p>Be wary, my friends!</p>
+]]></content>
+    
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Stop Copy and Paste in your code]]></title>

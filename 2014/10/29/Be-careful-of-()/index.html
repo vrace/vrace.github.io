@@ -3,17 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: TDD | WANE&#39;s LAIR</title>
+  <title>Be careful of () | WANE&#39;s LAIR</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="WANE's LAIR">
-<meta property="og:url" content="http://yoursite.com/tags/TDD/">
+  <meta name="description" content="It’s boring in the afternoon, and I wantted to have some fun with my friends. I sent them a short program, and ask for output.
+12345678910111213141516#include &lt;iostream&gt;class A{public:    A()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Be careful of ()">
+<meta property="og:url" content="http://yoursite.com/2014/10/29/Be-careful-of-()/">
 <meta property="og:site_name" content="WANE's LAIR">
-<meta property="og:description">
+<meta property="og:description" content="It’s boring in the afternoon, and I wantted to have some fun with my friends. I sent them a short program, and ask for output.
+12345678910111213141516#include &lt;iostream&gt;class A{public:    A()">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WANE's LAIR">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Be careful of ()">
+<meta name="twitter:description" content="It’s boring in the afternoon, and I wantted to have some fun with my friends. I sent them a short program, and ask for output.
+12345678910111213141516#include &lt;iostream&gt;class A{public:    A()">
 
   
     <link rel="alternative" href="/atom.xml" title="WANE&#39;s LAIR" type="application/atom+xml">
@@ -60,12 +63,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-New-To-TDD" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Be-careful-of-()" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/08/31/New-To-TDD/" class="article-date">
-  <time datetime="2014-08-31T09:50:20.000Z" itemprop="datePublished">Aug 31 2014</time>
+    <a href="/2014/10/29/Be-careful-of-()/" class="article-date">
+  <time datetime="2014-10-29T06:49:09.000Z" itemprop="datePublished">Oct 29 2014</time>
 </a>
     
   </div>
@@ -75,8 +76,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/08/31/New-To-TDD/">New To TDD</a>
+    <h1 class="article-title" itemprop="name">
+      Be careful of ()
     </h1>
   
 
@@ -84,37 +85,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="What_is_TDD">What is TDD</h2>
-<p>TDD - Test Driven Development, is a methodology to help building better software. The general idea of TDD is to build software in the RED-&gt;GREEN-&gt;YELLOW cycle.</p>
-<h3 id="RED">RED</h3>
-<p>In TDD, the test code is written first. Since we havn’t write any business code at this moment, the test cases shall fail - either the code won’t compile or current code can’t meet the test cases’ demand.</p>
-<h3 id="GREEN">GREEN</h3>
-<p>In this stage, we develop the business code to pass the test cases. We don’t have to gold-plate the code at this stage; we just need the code to pass the tests.</p>
-<h3 id="YELLOW">YELLOW</h3>
-<p>And now before we jump into new functions, we must refactor the code. Refactoring the code makes the code more clear, and easier for futher development. In this stage, we modify the code and run test cases at the same time to ensure we didn’t break any function.</p>
-<h2 id="Why_TDD">Why TDD</h2>
-<p>People make mistakes. That’s why we need TDD here, to set a bar to verify whether the code works. If we craft test cases clearly enough, when can ensure that we have completed the software’s requirement if the code is in GREEN stage.</p>
-<p>Also, we need a way to ensure that we won’t break existing functions by modifing existing code or adding new code.</p>
-<h2 id="TDD_is_not_Almighty">TDD is not Almighty</h2>
-<p>TDD is good, but it’s not almighty. There’re things TDD can’t cover, and there’re things TDD breaks. For an example, you can’t really test if a RANDOM functio really generates random numbers. Also, when using TDD, you sometimes have to break the code to make it easier to test.</p>
-<p>Any way, when people are not so clear about the requirements, TDD is a good way to help evolving the code. So before a new mighty methodology is developed, why not stick to it?</p>
+        <p>It’s boring in the afternoon, and I wantted to have some fun with my friends. I sent them a short program, and ask for output.</p>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">class</span> A</div><div class="line">{</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    A()</div><div class="line">    {</div><div class="line">        std::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello"</span> &lt;&lt; std::endl;</div><div class="line">    }</div><div class="line">};</div><div class="line"></div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line">    A a();</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>Not surprising, all of them answered “Hello”.</p>
+<p>It seems pretty straight forward, it’s justing creating an instance of A and calling its constructor, right?</p>
+<h4 id="NO!">NO!</h4>
+<p>Did you remember how you define a function within a function? That’s right. The code</p>
+<figure class="highlight C++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A a();</div></pre></td></tr></table></figure>
+
+<p>here declares a function, it’s not creating an instance of A.</p>
+<p>Be wary, my friends!</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/08/31/New-To-TDD/" data-id="0ebegl1rji0plllr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/10/29/Be-careful-of-()/" data-id="tg1u40lt81at9eu0" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TDD/">TDD</a></li></ul>
-
     </footer>
   </div>
   
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/10/07/Stop-Copy-and-Paste-in-your-code/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Stop Copy and Paste in your code</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-
-  
-  
 </section>
         
           <aside id="sidebar">
